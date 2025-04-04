@@ -1,63 +1,66 @@
-import pyarrow as pa
-import pyarrow.parquet as pq
-import duckdb
 import json
+import pyarrow as pa
+import duckdb
+import gzip
 from pathlib import Path
-from typing import Dict, List
-import logging
+from tqdm import tqdm
+from scripts.download_sample import download_sample_mrf
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
-def parse_mrf_file(file_path: str) -> Dict:
-    """Parse a Machine Readable File (MRF) and extract CPT codes and rates."""
-    try:
-        with open(file_path, 'r') as f:
-            data = json.load(f)
-        
-        # Extract relevant information
-        # This is a placeholder - adjust based on actual MRF structure
-        rates = []
-        for item in data.get('in_network', []):
-            if 'billing_code' in item and 'negotiated_rates' in item:
-                rates.append({
-                    'cpt_code': item['billing_code'],
-                    'rate': item['negotiated_rates'][0]['negotiated_rate']
-                })
-        
-        return rates
-    except Exception as e:
-        logger.error(f"Error parsing MRF file: {e}")
-        raise
+CPT_CODES = {"99213", "73560", "20610"}  # Sample CPTs
+LOCAL_MRF_PATH = Path("data/raw/sample_mrf.json.gz")
+OUTPUT_CSV = Path("data/processed/output_cpt_rates.csv")
 
-def save_to_parquet(data: List[Dict], output_path: str):
-    """Save the extracted data to a Parquet file."""
-    try:
-        # Convert to PyArrow Table
-        table = pa.Table.from_pylist(data)
-        
-        # Save as Parquet
-        pq.write_table(table, output_path)
-        logger.info(f"Data saved to {output_path}")
-    except Exception as e:
-        logger.error(f"Error saving to Parquet: {e}")
-        raise
+def parse_and_extract_mrf():
+    print("Parsing MRF and extracting CPT codes...")
+    records = []
+    with gzip.open(LOCAL_MRF_PATH, 'rt', encoding='utf-8') as f:
+        mrf = json.load(f)
 
-def main():
-    # Example usage
-    input_file = Path("data/raw/sample_mrf.json")
-    output_file = Path("data/processed/rates.parquet")
-    
-    if not input_file.exists():
-        logger.error(f"Input file not found: {input_file}")
-        return
-    
-    # Parse MRF
-    rates = parse_mrf_file(str(input_file))
-    
-    # Save results
-    save_to_parquet(rates, str(output_file))
+        provider_map = {}
+        for provider in tqdm(mrf.get("provider_references", []), desc="Provider refs"):
+            ref_id = provider.get("provider_group_id")
+            tin = provider.get("tin", {}).get("value", "unknown")
+            npis = provider.get("npi", [])
+            for npi in npis:
+                provider_map[(ref_id, npi)] = tin
+
+        for rate_obj in tqdm(mrf.get("in_network", []), desc="In-network items"):
+            code = rate_obj.get("billing_code")
+            if code not in CPT_CODES:
+                continue
+
+            for item in rate_obj.get("negotiated_rates", []):
+                provider_ref = item.get("provider_reference")
+                for price in item.get("negotiated_prices", []):
+                    records.append({
+                        "cpt": code,
+                        "npi": price.get("provider_npi", "unknown"),
+                        "negotiated_rate": price.get("negotiated_rate"),
+                        "tin": provider_map.get((provider_ref, price.get("provider_npi")), "unknown"),
+                        "pos": price.get("place_of_service", "unknown"),
+                    })
+
+    table = pa.Table.from_pylist(records)
+    return table
+
+def query_and_save(table):
+    print("Running DuckDB query and saving output...")
+    con = duckdb.connect()
+    con.register("cpt_table", table)
+    result = con.execute("""
+        SELECT cpt, npi, tin, pos, negotiated_rate
+        FROM cpt_table
+        WHERE negotiated_rate IS NOT NULL
+    """).fetchdf()
+
+    OUTPUT_CSV.parent.mkdir(parents=True, exist_ok=True)
+    result.to_csv(OUTPUT_CSV, index=False)
+    print(f"Saved output to {OUTPUT_CSV}")
 
 if __name__ == "__main__":
-    main() 
+    if not LOCAL_MRF_PATH.exists():
+        from scripts.download_sample import download_sample_mrf
+        download_sample_mrf()
+    arrow_table = parse_and_extract_mrf()
+    query_and_save(arrow_table)
