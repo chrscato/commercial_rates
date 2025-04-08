@@ -1,0 +1,214 @@
+{
+  "reporting_entity_name": "Centene Management Company LLC",
+  "reporting_entity_type": "Third Party Administrator",
+  "reporting_structure": [
+    {
+      "reporting_plans": [
+        {
+          "plan_name": "Ambetter from Fidelis care Gold for Children ",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY007",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Gold Wellness w/Age 29 Rider",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY058",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Silver for Children",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY006",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Bronze w/ Age 29 Rider",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY011",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Gold ",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY003",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis Care Gold Enhanced ",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY055",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis Care Silver Enhanced ",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY046",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Silver Enhanced",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY050",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Silver One w/Age 25 Rider",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY063",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Bronze HSA w/Age 25 Rider",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY061",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Platinum Children",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY008",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Platinum w/ Age 29 Rider",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY020",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Silver w/ Age 29 Rider",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY014",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Silver One w/Age 29 Rider",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY064",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis Care Gold with 29 Rider Enhanced ",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY056",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Gold  w/ Age 29 Rider",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY017",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Bronze for Children ",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY005",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Silver ",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY002",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Bronze",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY001",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Platinum ",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY004",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Catastrophic Coverage",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY009",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis Care Silver with 29 Rider Enhanced",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY050",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Gold Wellness w/Age 25 Rider",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY057",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Ambetter from Fidelis care Bronze HSA w/Age 29 Rider",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303NY062",
+          "plan_market_type": "individual"
+        }
+      ],
+      "in_network_files": [
+        {
+          "description": "in-network file",
+          "location": "http://centene.com/content/dam/centene/Centene%20Corporate/json/DOCUMENT/2025-03-26_centene-management-company-llc_fidelis-ex_in-network.json"
+        }
+      ],
+      "allowed_amount_file": {
+        "description": "allowed-amounts file",
+        "location": "http://centene.com/content/dam/centene/Centene%20Corporate/json/DOCUMENT/2025-03-26_centene-management-company-llc_fidelis-ex_allowed-amounts.json"
+      }
+    },
+    {
+      "reporting_plans": [
+        {
+          "plan_name": "Essential Plan 200-250",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303EP000",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Essential Plan 2",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303EP000",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Essential Plan 1",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303EP000",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Essential Plan 200-250, Zero Cost Share",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303EP000",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Essential Plan 4",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303EP000",
+          "plan_market_type": "individual"
+        },
+        {
+          "plan_name": "Essential Plan 3",
+          "plan_id_type": "HIOS",
+          "plan_id": "25303EP000",
+          "plan_market_type": "individual"
+        }
+      ],
+      "in_network_files": [
+        {
+          "description": "in-network file",
+          "location": "http://centene.com/content/dam/centene/Centene%20Corporate/json/DOCUMENT/2025-04-02_centene-management-company-llc_fidelis-es_in-network.json"
+        }
+      ],
+      "allowed_amount_file": {
+        "description": "allowed-amounts file",
+        "location": "http://centene.com/content/dam/centene/Centene%20Corporate/json/DOCUMENT/2025-04-02_centene-management-company-llc_fidelis-es_allowed-amounts.json"
+      }
+    }
+  ]
+}
