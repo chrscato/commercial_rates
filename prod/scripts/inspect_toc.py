@@ -5,7 +5,7 @@ import requests
 from pathlib import Path
 from io import BytesIO
 
-SAMPLE_OUTPUT = Path("prod/data/samples/toc_fidelis_sample.json")
+SAMPLE_OUTPUT = Path("https://tic-mrf.regence.com/mrf/current/2025-04-01_Regence%20BlueShield%20of%20Idaho,%20Inc.-non-ASO_index.json")
 
 def smart_open(source: str):
     if source.startswith("http"):
