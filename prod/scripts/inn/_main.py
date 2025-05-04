@@ -3,10 +3,10 @@
 import json
 import pyarrow.parquet as pq
 from pathlib import Path
-from prod.scripts.inn import format_check
-from prod.scripts.inn.scrapers import grouped_by_provider_reference
+from . import format_check
+from .scrapers import grouped_by_provider_reference
 
-MANIFEST_PATH = Path("data/staging/in_network_manifest.json")
+MANIFEST_PATH = Path(r"C:\Users\ChristopherCato\OneDrive - clarity-dx.com\transparency_data\prod\data\staging\in_network_manifest.json")
 OUTPUT_FOLDER = Path("prod/scripts/data/processed/inn_rates/")
 OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
 

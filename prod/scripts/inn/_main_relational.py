@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Optional, Dict, List
 import uuid
 import pandas as pd
+import pyarrow as pa
 
 from . import format_check
 from .scrapers import grouped_by_provider_reference
@@ -120,8 +121,8 @@ def process_url(url: str, manifest_entry: Optional[Dict] = None) -> None:
         tables = transform_to_relational(table, url, entity_info["reporting_entity_name"])
         
         # Add entity and plan info to tables
-        tables["reporting_entities"] = pd.DataFrame([entity_info])
-        tables["reporting_plans"] = pd.DataFrame(plans_info)
+        tables["reporting_entities"] = pa.Table.from_pandas(pd.DataFrame([entity_info]))
+        tables["reporting_plans"] = pa.Table.from_pandas(pd.DataFrame(plans_info))
         
         # Save tables
         file_prefix = Path(url).stem

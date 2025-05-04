@@ -128,9 +128,18 @@ def save_relational_tables(tables: Dict[str, Table], output_dir: str, file_prefi
             file_path = output_path / f"{file_prefix}_{table_name}"
             
             if format.lower() == "parquet":
-                pq.write_table(table, f"{file_path}.parquet")
+                # Check if it's already a PyArrow table or convert it
+                if isinstance(table, pd.DataFrame):
+                    pa_table = pa.Table.from_pandas(table)
+                    pq.write_table(pa_table, f"{file_path}.parquet")
+                else:
+                    pq.write_table(table, f"{file_path}.parquet")
             elif format.lower() == "csv":
-                table.to_pandas().to_csv(f"{file_path}.csv", index=False)
+                # Convert to pandas if needed before saving as CSV
+                if isinstance(table, pa.Table):
+                    table.to_pandas().to_csv(f"{file_path}.csv", index=False)
+                else:
+                    table.to_csv(f"{file_path}.csv", index=False)
             else:
                 raise ValueError(f"Unsupported format: {format}")
                 
@@ -138,4 +147,4 @@ def save_relational_tables(tables: Dict[str, Table], output_dir: str, file_prefi
             
     except Exception as e:
         logger.error(f"Failed to save relational tables: {e}")
-        raise 
+        raise

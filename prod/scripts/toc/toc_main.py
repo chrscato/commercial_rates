@@ -8,7 +8,7 @@ from .utils.toc_format_check import detect_toc_format
 from .utils import structure_level_inn
 
 
-TOC_INPUT = "https://tic-mrf.regence.com/mrf/current/2025-04-01_Regence%20BlueShield%20of%20Idaho,%20Inc.-non-ASO_index.json"
+TOC_INPUT = "https://tic-mrf.regence.com/mrf/current/2025-05-01_Regence%20BlueShield%20of%20Idaho,%20Inc.-ASO_index.json"
 OUTPUT_PATH = Path("prod/data/staging/staging_urls.json")
 
 def smart_load(source: str):

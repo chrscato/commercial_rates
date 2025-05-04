@@ -12,7 +12,7 @@ from pathlib import Path
 from tqdm import tqdm
 from datetime import datetime
 
-TOC_URL = "https://www.centene.com/content/dam/centene/Centene%20Corporate/json/DOCUMENT/2025-03-26_fidelis_index.json"
+TOC_URL = "https://d1hgtx7rrdl2cn.cloudfront.net/mrf/toc/FloridaBlue_Third-Party-Administrator_index.json"
 OUTPUT_FILE = Path("data/staging/in_network_manifest.json")
 MAX_URLS = 10
 
